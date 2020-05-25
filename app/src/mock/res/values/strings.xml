@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AndroidAppSkeletonProject</string>
+    <string name="errorButtonDetail">Detail</string>
+    <string name="error">Error</string>
+</resources>

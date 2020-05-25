@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp">
+
+        <View
+            android:id="@+id/sperator"
+            android:background="@color/snackSeparator"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:drawableStart="@drawable/ic_snack_bar"
+            android:drawablePadding="20dp"
+            android:textSize="14sp"
+            android:textColor="@color/colorBlue"
+            android:gravity="center_vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sperator"
+            tools:text="title"
+            android:layout_marginLeft="8dp"
+            android:drawableLeft="@drawable/ic_snack_bar" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            tools:text="subtitle"
+            android:textSize="12sp"
+            android:textColor="#de000000"
+            android:paddingStart="@dimen/design_snackbar_padding_horizontal"
+            android:paddingEnd="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:ignore="PrivateResource"
+            android:layout_marginLeft="8dp"
+            android:paddingLeft="@dimen/design_snackbar_padding_horizontal"
+            android:paddingRight="10dp" />
+
+        <Button
+            android:id="@+id/action"
+            android:visibility="gone"
+            android:textAllCaps="true"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_aleas_button"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonDetail"
+            app:layout_constraintTop_toBottomOf="@+id/subtitle"
+            android:layout_marginRight="8dp" />
+
+        <ImageButton
+            android:visibility="gone"
+            android:id="@+id/buttonDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:src="@drawable/ic_info_blue"
+            android:text="@string/errorButtonDetail"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subtitle"
+            android:layout_marginRight="8dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

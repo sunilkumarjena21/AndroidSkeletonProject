@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">AndroidAppSkeletonProject</string>
+    <string name="errorButtonDetail">Detail</string>
+    <string name="error">Error</string>
+    <string name="profile">Perfil</string>
+    <string name="title_activity_settings">Paramètres</string>
+    <string name="language">Langue</string>
+    <string name="prompt_email">Adresse e-mail</string>
+    <string name="prompt_password">mot de passe</string>
+    <string name="login">se connecter</string>
+    <string name="logout">Se déconnecter</string>
+    <string-array name="language">
+        <item>English</item>
+        <item>French</item>
+        <item>Spanish</item>
+    </string-array>
+
+    <string-array name="languageAlias">
+        <item>"en-US"</item>
+        <item>"fr-FR"</item>
+        <item>"es-ES"</item>
+    </string-array>
+
+</resources>

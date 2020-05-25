@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00205B</color>
+    <color name="colorPrimaryLight">#a800205b</color>
+    <color name="colorBlue">#4a90e2</color>
+    <color name="colorShadow">#3D000000</color>
+    <color name="red">#FF113E</color>
+    <color name="yellow">#FFD422</color>
+    <color name="green">#4CBB17</color>
+    <color name="textColor">#303030</color>
+    <color name="colorPrimaryLight1">#005587</color>
+    <color name="colorPrimaryLight4">#b7c9d3</color>
+    <color name="lightGrey">#ececec</color>
+    <color name="colorAccentRed">#e4002b</color>
+    <color name="colorGrey">#e7e6e6</color>
+    <color name="darkGrey">#647592</color>
+    <color name="greyBackground">#ECECEC</color>
+
+
+    #ECECEC
+
+    <!-- snackbar color -->
+    <color name="snackBackground">#eeeeee</color>
+    <color name="snackSeparator">@color/colorBlue</color>
+    <color name="transparent">#00000000</color>
+    <color name="warning">#e4002b</color>
+</resources>

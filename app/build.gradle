@@ -1,0 +1,174 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    def versionMajor = 1
+    def versionMinor = 0
+    def versionPatch = 0
+    def versionRC = 16
+
+    defaultConfig {
+        applicationId "com.androidapp.skeletonproject"
+        minSdkVersion 16
+        targetSdkVersion 29
+        multiDexEnabled true
+        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionRC * 10
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
+            }
+        }
+    }
+    lintOptions {
+        lintConfig file("lint.xml")
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+        }
+        release {
+            debuggable false
+            minifyEnabled false
+            shrinkResources false
+            // proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "environment", "datasource"
+    productFlavors {
+        validation {
+            dimension "environment"
+            applicationIdSuffix ".val"
+            versionNameSuffix "-VRC$versionRC"
+            buildConfigField "String", "SERVER_URL", "\"https://xxx\""
+            buildConfigField 'String', 'API_CLIENT_ID', '""'
+            buildConfigField 'String', 'API_CLIENT_SECRET', '""'
+            buildConfigField "String", "SKELETON_APP_PACKAGE", "\"com.androidapp.skeletonproject.debug\""
+        }
+        beta {
+            dimension "environment"
+            versionNameSuffix "-BRC$versionRC"
+            applicationIdSuffix ".beta"
+            buildConfigField "String", "SERVER_URL", "\"https://xxx\""
+            buildConfigField 'String', 'API_CLIENT_ID', '""'
+            buildConfigField 'String', 'API_CLIENT_SECRET', '""'
+            buildConfigField "String", "SKELETON_APP_PACKAGE", "\"com.androidapp.skeletonproject.beta\""
+        }
+        production {
+            dimension "environment"
+            buildConfigField "String", "SERVER_URL", "\"https://xxx\""
+            buildConfigField 'String', 'API_CLIENT_ID', '""'
+            buildConfigField 'String', 'API_CLIENT_SECRET', '""'
+            buildConfigField "String", "SKELETON_APP_PACKAGE", "\"com.androidapp.skeletonproject\""
+        }
+        mock {
+            dimension "datasource"
+            applicationIdSuffix ".mock"
+        }
+        remote {
+            dimension "datasource"
+        }
+    }
+}
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        outputFileName = "skeletonApp-${variant.name}-${variant.versionName}.apk"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.1.0-alpha09'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //manage licenses
+    implementation 'com.google.android.gms:play-services-oss-licenses:16.0.0'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.8'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.2.50'
+
+    //jwt parsing
+    implementation 'com.auth0.android:jwtdecode:1.1.1'
+
+    //Database encryption
+    implementation 'net.zetetic:android-database-sqlcipher:3.5.9@aar'
+
+/*
+    //SSO
+    implementation(name: 'authentication-client', ext: 'aar')
+    implementation(name: 'authentication-common', ext: 'aar')
+    implementation 'io.jsonwebtoken:jjwt:0.9.0'
+    // implementation(name: 'authenticator', ext: 'aar')
+
+    //  implementation "com.airbusgroup.sso:authentication:1.1.0.0"
+    implementation 'commons-io:commons-io:2.5'
+    implementation "com.android.support:customtabs:$android_compat_version"
+*/
+
+    //Flag picker for international phonenumber
+    implementation('com.lamudi.phonefield:phone-field:0.1.3@aar') {
+        transitive = true
+    }
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.2'
+    // JodaTime
+    implementation 'joda-time:joda-time:2.9.4'
+
+    // Insert Koin
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-core:$koin_version"
+    testImplementation "org.koin:koin-test:$koin_version"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    implementation "org.koin:koin-androidx-ext:$koin_version"
+
+    // RxJava
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.13'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+    implementation 'com.jakewharton.rxbinding2:rxbinding-kotlin:2.1.1'
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    // Architecture components
+    implementation "android.arch.lifecycle:extensions:$android_lifecycle_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation "com.android.support:design:$android_compat_version"
+    implementation "com.android.support:support-v4:$android_compat_version"
+
+    //ROOM database
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"
+
+    // Log
+    implementation "com.jakewharton.timber:timber:$timber_version"
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation "com.android.support:preference-v7:28.0.0"
+
+}

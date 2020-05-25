@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ListPreference
+        android:icon="@drawable/language"
+        android:entries="@array/language"
+        android:entryValues="@array/languageAlias"
+        android:key="language_preference"
+        android:title="@string/language" />
+    <Preference
+        android:icon="@drawable/logout_variant"
+        android:key="logout_setting"
+        android:title="@string/logout" />
+</PreferenceScreen>
