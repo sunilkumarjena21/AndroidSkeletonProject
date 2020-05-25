@@ -107,7 +107,7 @@ build specificity required, ie: lib by hand
 - utilsModule
 
 ## Data flow
-![Alt text]("Data flow")
+![Alt text](https://github.com/sunilkumarjena21/AndroidSkeletonProject/blob/master/androidskeleton.PNG "Data flow")
 
 	
 ## Auto configuration options
